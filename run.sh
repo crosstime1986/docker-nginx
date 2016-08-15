@@ -1,7 +1,8 @@
 #!/bin/sh
 docker run \
---volumes-from php55-fpm --name nginx -p 443:443 -p 80:80 -d \
+--volumes-from app1 --name nginx -p 443:443 -p 80:80 -d \
 -v /root/docker-nginx/conf/nginx:/etc/nginx \
 -v /data0/web/html:/usr/share/nginx/html:rw \
---link php55-fpm:php553-fpm \
+--link app1:php-app1 \
+--add-host app1:127.0.0.1 \
 crosstime1986/nginx
